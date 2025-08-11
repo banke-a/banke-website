@@ -81,6 +81,44 @@
       border-radius: var(--radius-md);
       margin-top: 1rem;
     }
+    
+    .form-error {
+      display: none;
+      background: #ef4444;
+      color: white;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-top: 1rem;
+    }
+    
+    .btn-loading {
+      position: relative;
+    }
+    
+    .btn-loading::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      margin: auto;
+      border: 2px solid transparent;
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: button-loading-spinner 1s ease infinite;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+    
+    @keyframes button-loading-spinner {
+      from {
+        transform: rotate(0turn);
+      }
+      to {
+        transform: rotate(1turn);
+      }
+    }
   </style>
 </head>
 <body>
@@ -114,13 +152,16 @@
         <div class="contact-form">
           <h2 class="fw-bold mb-4">Send a Message</h2>
           
-          <!-- Option 1: MailerLite Embedded Form -->
-          <!-- Replace this comment with your MailerLite form embed code -->
-          <!-- It usually looks like: <div class="ml-embedded" data-form="YOUR_FORM_ID"></div> -->
-          <!-- And includes a script tag -->
-          
-          <!-- Option 2: Custom Form (sends to MailerLite via API or integration) -->
-          <form id="contactForm" action="YOUR_FORM_ENDPOINT" method="POST">
+          <!-- Netlify Form with proper configuration -->
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+            <!-- Hidden field for Netlify form detection -->
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <!-- Honeypot field for spam protection -->
+            <p style="display: none;">
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+            
             <div class="mb-3">
               <label for="name" class="form-label">Name *</label>
               <input type="text" class="form-control" id="name" name="name" required>
@@ -148,31 +189,18 @@
               <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Tell me about your project..."></textarea>
             </div>
             
-            <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+            <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
+              <span id="submitText">Send Message</span>
+            </button>
             
             <div class="form-success" id="successMessage">
               ✓ Message sent successfully! I'll get back to you within 24 hours.
             </div>
-          </form>
-          
-          <!-- MailerLite Integration Instructions -->
-          <script>
-            // If using custom form, add MailerLite integration here
-            // Option 1: Use MailerLite's embedded form JavaScript
-            // Option 2: Submit to your backend which then adds to MailerLite via API
-            // Option 3: Use Netlify Forms or similar service that integrates with MailerLite
             
-            // Basic form handler (update with your actual endpoint)
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-              e.preventDefault();
-              // Add your form submission logic here
-              // For now, just show success message
-              document.getElementById('successMessage').style.display = 'block';
-              this.reset();
-              // Scroll to success message
-              document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-            });
-          </script>
+            <div class="form-error" id="errorMessage">
+              ✗ Something went wrong. Please try again or email me directly.
+            </div>
+          </form>
         </div>
       </div>
       
@@ -263,7 +291,60 @@
   </div>
 </footer>
 
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+
+// Enhanced form handling for Netlify
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const form = this;
+  const submitBtn = document.getElementById('submitBtn');
+  const submitText = document.getElementById('submitText');
+  const successMessage = document.getElementById('successMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  
+  // Reset messages
+  successMessage.style.display = 'none';
+  errorMessage.style.display = 'none';
+  
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.classList.add('btn-loading');
+  submitText.style.opacity = '0';
+  
+  // Prepare form data
+  const formData = new FormData(form);
+  
+  // Submit to Netlify
+  fetch('/', {
+    method: 'POST',
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(response => {
+    if (response.ok) {
+      // Success
+      successMessage.style.display = 'block';
+      form.reset();
+      successMessage.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Error
+      errorMessage.style.display = 'block';
+    }
+  })
+  .catch(error => {
+    // Network error
+    errorMessage.style.display = 'block';
+  })
+  .finally(() => {
+    // Reset button state
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('btn-loading');
+    submitText.style.opacity = '1';
+  });
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
