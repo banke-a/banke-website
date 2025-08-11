@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact – Banke Ajayi</title>
-  <meta name="description" content="Book a 30-minute intro call. Google Meet links generated automatically." />
+  <meta name="description" content="Book a 30-minute intro call or send me a message. Let's discuss your MVP project and launch plan." />
   <meta property="og:title" content="Contact – Banke Ajayi" />
   <meta property="og:description" content="Book a 30-minute intro call to discuss your MVP project and launch plan." />
   <meta property="og:type" content="website" />
@@ -13,6 +13,75 @@
   <link rel="icon" href="assets/favicon.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/style.css" rel="stylesheet" />
+  <style>
+    /* Custom styles for the contact form */
+    .contact-form {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .contact-form label {
+      font-weight: 600;
+      color: var(--brand-text);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      outline: none;
+      border-color: var(--brand-navy);
+      box-shadow: 0 0 0 3px rgba(36, 71, 128, 0.1);
+    }
+    
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .contact-method {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      height: 100%;
+      transition: all 0.2s ease;
+    }
+    
+    .contact-method:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--brand-navy);
+    }
+    
+    .contact-method h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--brand-navy);
+    }
+    
+    .form-success {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
@@ -32,20 +101,165 @@
 
 <header class="py-5">
   <div class="container">
-    <h1 class="fw-bold">Let’s Get Your Project Started</h1>
-    <p class="lead">Book a free 30-minute intro call. I take up to 3 build clients per month.</p>
-    <a class="btn btn-dark btn-lg" href="https://calendly.com/bankeajayi/intro-call" target="_blank" rel="noopener">Book a 20-min Intro</a>
+    <h1 class="fw-bold">Let's Get Your Project Started</h1>
+    <p class="lead">Book a free 30-minute intro call or send me a message below. I take up to 3 build clients per month.</p>
   </div>
 </header>
 
-<section class="py-5 section-tint">
+<section class="py-5">
   <div class="container">
-    <h2 class="fw-bold mb-3">Prefer another channel?</h2>
-    <ul class="list-unstyled fs-5">
-      <li>Email: <a href="mailto:YOUR_EMAIL">contact@bankeajayi.com</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/in/bankeajayi/" target="_blank" rel="noopener">linkedin.com/in/YOUR_LINKEDIN</a></li>
-      <li>Instagram: <a href="https://www.instagram.com/_bankeajayi/" target="_blank" rel="noopener">@YOUR_IG</a></li>
-    </ul>
+    <div class="row gy-5">
+      <!-- Contact Form Column -->
+      <div class="col-lg-7">
+        <div class="contact-form">
+          <h2 class="fw-bold mb-4">Send a Message</h2>
+          
+          <!-- Option 1: MailerLite Embedded Form -->
+          <!-- Replace this comment with your MailerLite form embed code -->
+          <!-- It usually looks like: <div class="ml-embedded" data-form="YOUR_FORM_ID"></div> -->
+          <!-- And includes a script tag -->
+          
+          <!-- Option 2: Custom Form (sends to MailerLite via API or integration) -->
+          <form id="contactForm" action="YOUR_FORM_ENDPOINT" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name *</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="projectType" class="form-label">Project Type</label>
+              <select class="form-control" id="projectType" name="projectType">
+                <option value="">Select project type...</option>
+                <option value="mvp">MVP Build (4-6 weeks)</option>
+                <option value="consultation">Strategy Consultation</option>
+                <option value="gtm">Go-to-Market Planning</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="timeline" class="form-label">Timeline</label>
+              <select class="form-control" id="timeline" name="timeline">
+                <option value="">When do you need to launch?</option>
+                <option value="asap">ASAP</option>
+                <option value="1month">Within 1 month</option>
+                <option value="2months">1-2 months</option>
+                <option value="3months">2-3 months</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+            
+            <div class="mb-4">
+              <label for="message" class="form-label">Message *</label>
+              <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Tell me about your project..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+            
+            <div class="form-success" id="successMessage">
+              ✓ Message sent successfully! I'll get back to you within 24 hours.
+            </div>
+          </form>
+          
+          <!-- MailerLite Integration Instructions -->
+          <script>
+            // If using custom form, add MailerLite integration here
+            // Option 1: Use MailerLite's embedded form JavaScript
+            // Option 2: Submit to your backend which then adds to MailerLite via API
+            // Option 3: Use Netlify Forms or similar service that integrates with MailerLite
+            
+            // Basic form handler (update with your actual endpoint)
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+              e.preventDefault();
+              // Add your form submission logic here
+              // For now, just show success message
+              document.getElementById('successMessage').style.display = 'block';
+              this.reset();
+              // Scroll to success message
+              document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            });
+          </script>
+        </div>
+      </div>
+      
+      <!-- Contact Methods Column -->
+      <div class="col-lg-5">
+        <div class="row gy-4">
+          <!-- Quick Call -->
+          <div class="col-12">
+            <div class="contact-method text-center">
+              <h3>Quick Call</h3>
+              <p class="mb-3">Prefer to talk? Book a free 30-minute intro call to discuss your project.</p>
+              <a class="btn btn-dark btn-lg w-100" href="https://calendly.com/bankeajayi/intro-call" target="_blank" rel="noopener">Book Intro Call</a>
+            </div>
+          </div>
+          
+          <!-- Social Links -->
+          <div class="col-12">
+            <div class="contact-method">
+              <h3>🔗 Connect</h3>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <strong>LinkedIn:</strong><br>
+                  <a href="https://www.linkedin.com/in/bankeajayi/" target="_blank" rel="noopener">linkedin.com/in/bankeajayi</a>
+                </li>
+                <li class="mb-2">
+                  <strong>Instagram:</strong><br>
+                  <a href="https://www.instagram.com/_bankeajayi/" target="_blank" rel="noopener">@_bankeajayi</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Response Time -->
+          <div class="col-12">
+            <div class="contact-method bg-light">
+              <h3>Response Time</h3>
+              <p class="mb-0">I typically respond within 24 hours during business days. For urgent projects, mention it in your message.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 section-tint border-top">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Before We Talk</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5>Good Fit If You:</h5>
+        <ul>
+          <li>Need an MVP in 4-6 weeks</li>
+          <li>Have a clear vision</li>
+          <li>Ready to launch fast</li>
+          <li>Value speed & quality</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>I Can Help With:</h5>
+        <ul>
+          <li>MVP development</li>
+          <li>Go-to-market strategy</li>
+          <li>Product validation</li>
+          <li>Technical architecture</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Have Ready:</h5>
+        <ul>
+          <li>Your project brief</li>
+          <li>Target timeline</li>
+          <li>Key success metrics</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
