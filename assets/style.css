@@ -1,0 +1,77 @@
+/* ===== Brand palette ===== */
+:root{
+  --brand-bg:       #FAF9F6;  /* off-white */
+  --brand-text:     #121212;  /* off-black */
+  --brand-navy:     #0E2A47;  /* primary */
+  --brand-navy-600: #0B2239;  /* hover/darker */
+  --brand-mustard:  #D4A017;  /* accent */
+  --brand-mustard-600:#B38512;/* hover/darker */
+  --brand-border:   #E8E6E1;  /* light border */
+  --brand-tint:     #F4F1EA;  /* subtle section tint */
+}
+
+/* ===== Bootstrap variable overrides (works with CDN build) ===== */
+:root{
+  --bs-body-bg: var(--brand-bg);
+  --bs-body-color: var(--brand-text);
+  --bs-link-color: var(--brand-navy);
+  --bs-link-hover-color: var(--brand-navy-600);
+  --bs-primary: var(--brand-navy);
+  --bs-secondary: var(--brand-mustard);
+  --bs-border-color: var(--brand-border);
+}
+
+/* ===== Global ===== */
+html, body { background: var(--brand-bg); color: var(--brand-text); }
+.section-tint { background: var(--brand-tint); }
+.navbar { background: var(--brand-bg) !important; }
+.nav-link.active { font-weight: 600; color: var(--brand-navy) !important; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Buttons ===== */
+/* Use .btn-primary for navy CTAs */
+.btn-primary{
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
+}
+.btn-primary:hover,
+.btn-primary:focus{
+  background: var(--brand-navy-600);
+  border-color: var(--brand-navy-600);
+}
+
+/* Outline variant */
+.btn-outline-primary{
+  color: var(--brand-navy);
+  border-color: var(--brand-navy);
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus{
+  background: var(--brand-navy);
+  color: #fff;
+}
+
+/* Optional mustard CTA */
+.btn-mustard{
+  --bs-btn-color:#000;
+  --bs-btn-bg: var(--brand-mustard);
+  --bs-btn-border-color: var(--brand-mustard);
+  --bs-btn-hover-bg: var(--brand-mustard-600);
+  --bs-btn-hover-border-color: var(--brand-mustard-600);
+  --bs-btn-active-bg: var(--brand-mustard-600);
+  --bs-btn-active-border-color: var(--brand-mustard-600);
+}
+
+/* Cards / stat boxes */
+.card, .border, .p-4.border{
+  border-color: var(--brand-border) !important;
+}
+
+/* Headings spacing */
+section { padding: 64px 0; }
+.py-lg-6 { padding-top: 5rem; padding-bottom: 5rem; }
+
+/* Small utilities */
+.muted { color: #6c757d; }
+hr { border-top: 1px solid var(--brand-border); }
