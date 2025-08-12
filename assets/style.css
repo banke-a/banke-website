@@ -602,3 +602,19 @@ footer a:hover {
   background: rgba(36, 71, 128, 0.1);
   color: var(--accent);
 }
+
+/* ===== Social Icons ===== */
+.social-icons a {
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+.social-icons i {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
