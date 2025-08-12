@@ -5,8 +5,10 @@
   --surface:          #ffffff;
   --text:             #0a0a0a;
   --text-light:       #666666;
-  --accent:           #1a1a1a;
-  --accent-hover:     #000000;
+  --accent:           #244780;    /* Navy blue */
+  --accent-hover:     #1a325a;    /* Darker navy */
+  --accent-yellow:    #ffdb58;    /* Yellow for special CTAs */
+  --accent-yellow-hover: #f0c94a; /* Darker yellow */
   --border:           #e5e5e5;
   --border-hover:     #cccccc;
   
@@ -170,7 +172,7 @@ strong {
   left: 1rem;
   right: 1rem;
   height: 2px;
-  background: var(--text);
+  background: var(--accent);
   border-radius: 2px;
 }
 
@@ -213,14 +215,14 @@ strong {
 
 .btn-outline-primary {
   background: transparent;
-  color: var(--text);
-  border: 1.5px solid var(--border);
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
 }
 
 .btn-outline-primary:hover {
-  background: var(--text);
+  background: var(--accent);
   color: white;
-  border-color: var(--text);
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
@@ -230,22 +232,37 @@ strong {
 }
 
 .btn-dark:hover {
-  background: var(--accent-hover);
+  background: #000000;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
   color: white;
 }
 
+/* Yellow CTA button - for high-priority actions */
+.btn-yellow {
+  background: var(--accent-yellow);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-yellow:hover {
+  background: var(--accent-yellow-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  color: var(--text);
+}
+
 /* Ghost button */
 .btn-ghost {
   background: transparent;
-  color: var(--text);
+  color: var(--accent);
   padding: 0.5rem 1rem;
   font-weight: 500;
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(36, 71, 128, 0.05);
 }
 
 /* ===== Clean Sections ===== */
@@ -289,7 +306,7 @@ section {
 }
 
 .border.rounded.p-3:hover {
-  border-color: var(--text);
+  border-color: var(--accent);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -336,7 +353,7 @@ section {
 }
 
 .stat-box:hover {
-  border-color: var(--text);
+  border-color: var(--accent);
   background: var(--surface);
 }
 
@@ -365,7 +382,7 @@ a:hover {
 
 /* Inline links with underline animation */
 p a, li a {
-  color: var(--text);
+  color: var(--accent);
   position: relative;
   font-weight: 500;
 }
@@ -377,7 +394,7 @@ p a::after, li a::after {
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--text);
+  background: var(--accent);
   transition: width 0.3s ease;
 }
 
@@ -421,8 +438,8 @@ footer a:hover {
 
 .form-control:focus {
   outline: none;
-  border-color: var(--text);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(36, 71, 128, 0.1);
   background: var(--surface);
 }
 
@@ -505,8 +522,10 @@ footer a:hover {
     --surface: #141414;
     --text: #ffffff;
     --text-light: #999999;
-    --accent: #ffffff;
-    --accent-hover: #f0f0f0;
+    --accent: #5b7fb9;          /* Lighter navy for dark mode */
+    --accent-hover: #4a6da8;    /* Adjusted for dark mode */
+    --accent-yellow: #ffdb58;   /* Yellow stays vibrant */
+    --accent-yellow-hover: #f0c94a;
     --border: #262626;
     --border-hover: #404040;
   }
@@ -516,8 +535,13 @@ footer a:hover {
   }
   
   .btn-outline-primary:hover {
-    background: white;
-    color: black;
+    background: var(--accent);
+    color: white;
+  }
+  
+  .btn-yellow {
+    background: var(--accent-yellow);
+    color: #0a0a0a;
   }
 }
 
@@ -570,6 +594,11 @@ footer a:hover {
 }
 
 .badge-warning {
-  background: rgba(255, 184, 0, 0.1);
-  color: var(--warning);
+  background: rgba(255, 184, 0, 0.15);
+  color: #d4a017;
+}
+
+.badge-accent {
+  background: rgba(36, 71, 128, 0.1);
+  color: var(--accent);
 }
