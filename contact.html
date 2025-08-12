@@ -8,10 +8,11 @@
   <meta property="og:title" content="Contact – Banke Ajayi" />
   <meta property="og:description" content="Book a 30-minute intro call to discuss your MVP project and launch plan." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bankeajayi.com/" />
+  <meta property="og:url" content="https://bankeajayi.com/contact.html" />
   <meta property="og:image" content="https://bankeajayi.com/assets/og-image.jpg" />
   <link rel="icon" href="assets/favicon.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link href="assets/style.css" rel="stylesheet" />
   <style>
     /* Custom styles for the contact form */
@@ -73,6 +74,22 @@
       color: var(--brand-navy);
     }
     
+    /* Social icon styles */
+    .social-icons a {
+      text-decoration: none;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+    
+    .social-icons i {
+      font-size: 2rem;
+      color: var(--brand-navy);
+    }
+    
     .form-success {
       display: none;
       background: #10b981;
@@ -89,35 +106,6 @@
       padding: 1rem;
       border-radius: var(--radius-md);
       margin-top: 1rem;
-    }
-    
-    .btn-loading {
-      position: relative;
-    }
-    
-    .btn-loading::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      margin: auto;
-      border: 2px solid transparent;
-      border-top-color: #ffffff;
-      border-radius: 50%;
-      animation: button-loading-spinner 1s ease infinite;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-    }
-    
-    @keyframes button-loading-spinner {
-      from {
-        transform: rotate(0turn);
-      }
-      to {
-        transform: rotate(1turn);
-      }
     }
   </style>
 </head>
@@ -152,9 +140,10 @@
         <div class="contact-form">
           <h2 class="fw-bold mb-4">Send a Message</h2>
           
-          <!-- Simple Netlify Form -->
-          <form name="contact" method="POST" netlify id="contactForm">
+          <!-- Netlify Form -->
+          <form name="contact" method="POST" data-netlify="true" id="contactForm">
             <!-- Honeypot field for spam protection -->
+            <input type="hidden" name="form-name" value="contact">
             <p style="display: none;">
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
@@ -211,20 +200,18 @@
             </div>
           </div>
           
-          <!-- Social Links -->
+          <!-- Social Links with Icons -->
           <div class="col-12">
-            <div class="contact-method">
+            <div class="contact-method text-center">
               <h3>Connect</h3>
-              <ul class="list-unstyled mb-0">
-                <li class="mb-2">
-                  <strong>LinkedIn:</strong><br>
-                  <a href="https://www.linkedin.com/in/bankeajayi/" target="_blank" rel="noopener">linkedin.com/in/bankeajayi</a>
-                </li>
-                <li class="mb-2">
-                  <strong>Instagram:</strong><br>
-                  <a href="https://www.instagram.com/_bankeajayi/" target="_blank" rel="noopener">@_bankeajayi</a>
-                </li>
-              </ul>
+              <div class="social-icons d-flex gap-3 justify-content-center">
+                <a href="https://www.linkedin.com/in/bankeajayi/" target="_blank" rel="noopener" title="LinkedIn">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/_bankeajayi/" target="_blank" rel="noopener" title="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
             </div>
           </div>
           
@@ -288,15 +275,6 @@
 
 <script>
 document.getElementById('y').textContent = new Date().getFullYear();
-
-// Simple form success handling (optional)
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  // Let Netlify handle the submission naturally
-  // Optional: Show a quick success message
-  setTimeout(() => {
-    document.getElementById('successMessage').style.display = 'block';
-  }, 100);
-});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
