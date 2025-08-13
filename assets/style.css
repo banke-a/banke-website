@@ -515,36 +515,6 @@ footer a:hover {
   }
 }
 
-/* ===== Dark Mode Support (Optional) ===== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --text: #ffffff;
-    --text-light: #999999;
-    --accent: #5b7fb9;          /* Lighter navy for dark mode */
-    --accent-hover: #4a6da8;    /* Adjusted for dark mode */
-    --accent-yellow: #ffdb58;   /* Yellow stays vibrant */
-    --accent-yellow-hover: #f0c94a;
-    --border: #262626;
-    --border-hover: #404040;
-  }
-  
-  .navbar {
-    background: rgba(20, 20, 20, 0.8);
-  }
-  
-  .btn-outline-primary:hover {
-    background: var(--accent);
-    color: white;
-  }
-  
-  .btn-yellow {
-    background: var(--accent-yellow);
-    color: #0a0a0a;
-  }
-}
-
 /* ===== Performance ===== */
 .no-select {
   -webkit-user-select: none;
